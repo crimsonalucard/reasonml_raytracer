@@ -26,7 +26,7 @@ The picture included in the repo: 800x400.ppm took hours to render with 200 rand
 
 # Running:
 
-current settings in the file will take 5 minutes to render the same picture in the repo at 200x100 pixels with 100 random ray samples per pixel.
+Current settings in the file will take 5 minutes to render the same picture in the repo at 200x100 pixels with 100 random ray samples per pixel.
 
 You can view the included picture by opening 800x400.ppm file in your favorite picture viewer. Some applications can't view the ppm but the mac previewer should work. If you can't view the ppm file I've included a 800x400.png file that's more compatible with all viewers.
 
