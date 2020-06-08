@@ -92,7 +92,6 @@ let sky_color_from_ray = (x: ray): rgb => {
 
 let rec average_colors =
         (~acc: vec3=(0.0, 0.0, 0.0), ~n: int=0, colors: list(rgb)): rgb =>
-  // Js.Console.log((n, acc, List.length(colors)));
   if (List.length(colors) == 0) {
     let (x, y, z) = acc;
     let divisor = float_of_int(n);
@@ -102,8 +101,6 @@ let rec average_colors =
         int_of_float(y /. divisor),
         int_of_float(z /. divisor),
       );
-      // Js.Console.log("success!!!");
-      // Js.Console.log(result);
       result;
     } else {
       Js.Console.log("ERROR!");
