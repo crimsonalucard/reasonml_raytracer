@@ -1,4 +1,3 @@
-//include Utils;
 include Shapes;
 
 let width = 200;
@@ -17,7 +16,6 @@ let print_percentage = (x: int, y: int, width: int, height: int) => {
     );
 
   let percent_string = string_of_int(percent_number) ++ "%";
-  // output_string(stdout, "\033c");
   print_string(percent_string);
 };
 
@@ -65,19 +63,16 @@ let aliased_ray_to_color =
       rays: aliased_ray,
     )
     : rgb => {
-  //  Js.Console.log(rays);
   rays |> List.rev_map(color_function(shapes)) |> average_colors;
 };
 
 let rec ray_to_random_bounce_color =
         (~depth: int=0, shapes: list(shape), main_ray: ray): rgb =>
-  //  Js.Console.log((depth, main_ray));
   if (depth == (-1)) {
     (0, 0, 0);
   } else {
     switch (main_ray |> resolve_hit_info_from_list(shapes)) {
     | None =>
-      //      Js.Console.log("sky hit!!");
       let (r, g, b) = main_ray |> sky_color_from_ray;
       let multiplier = 0.5 ** float_of_int(depth);
       (
@@ -86,17 +81,10 @@ let rec ray_to_random_bounce_color =
         int_of_float(float_of_int(b) *. multiplier),
       );
     | Just(hit_result) =>
-      //      Js.Console.log("hit!!!");
       let random_vector = get_random_unit_sphere_vector();
-      //      Js.log(random_vector);
       let target = add(hit_result.normal, random_vector);
-      //      Js.log(("target!!!!!!!!!", target));
-      //    Js.log({origin: hit_result.point, direction: target});
       let bounce_ray: ray = {origin: hit_result.point, direction: target};
-      //      Js.log(bounce_ray);
-      //      Js.log(depth);
       ray_to_random_bounce_color(~depth=depth + 1, shapes, bounce_ray);
-    //      Js.Console.log(hit_result);
     };
   };
 
@@ -111,8 +99,6 @@ let coord_to_sky_color_or_sphere =
     )
     : rgb => {
   let (x, y) = coord;
-  //  Js.Console.log(coord);
-  //  let (x, y) = (100, 23);
   if (x == width - 1) {
     print_percentage(x, y, width, height);
   } else {
@@ -121,9 +107,7 @@ let coord_to_sky_color_or_sphere =
   let main_ray = generate_camera_ray(x, y, width, height, origin, upper_left);
   let aliased_rays =
     main_ray |> get_aliased_rays(~samples=samples_per_pixel, width, height);
-  //  Js.Console.log(List.length(aliased_rays));
   aliased_rays |> aliased_ray_to_color(shapes, ray_to_random_bounce_color);
-  // aliased_rays |> aliased_ray_to_color(shapes, ray_to_normal_color);
 };
 
 let coords = Utils.ordered_combinations(range(width), range(height));
