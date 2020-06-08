@@ -8,7 +8,7 @@ of rays where each grid square represents a pixel in a picture and each ray that
 The color of each pixel is determined by whether or not a ray that intersects the pixel also intersects with an object or the
 background color.
 
-![Ray Tracer Explanation](raytracer_explanation.png)
+![Ray Tracer Explanation](raytracer_explanation.jpg)
 
 I've had experience writing a ray tracer before but this was my first attempt at writing a raytacer that simulates bouncing light. The simplest ray tracer usually just approximates light using a simple equation called Phong to calculate the color of an object based off the angle between a surface normal and point source of light.
 
