@@ -51,7 +51,6 @@ let rec get_aliased_rays =
   if (samples == 0) {
     acc;
   } else {
-    //    Js.Console.log(samples);
     Random.init(int_of_float(Js.Date.now()));
     let randx = Random.float(1.0) *. (1.0 /. float_of_int(width));
     let randy = Random.float(1.0) *. (1.0 /. float_of_int(height));
@@ -60,7 +59,6 @@ let rec get_aliased_rays =
       origin: original_ray.origin,
       direction: (x +. randx, y +. randy, z),
     };
-    //    Js.Console.log((randx, randy, original_ray.direction));
     get_aliased_rays(
       ~acc=[new_ray, ...acc],
       ~samples=samples - 1,
