@@ -49,7 +49,6 @@ let ground: sphere = {
 let shape_list = [Sphere(ground), Sphere(main_sphere)];
 
 let ray_to_normal_color = (shapes: list(shape), a_ray: ray) => {
-  //       Js.Console.log(main_ray);
   switch (resolve_hit_info_from_list(shapes, a_ray)) {
   | None => a_ray |> sky_color_from_ray
   | Just(hit_result) => hit_result.normal |> normal_to_color
@@ -99,11 +98,11 @@ let coord_to_sky_color_or_sphere =
     )
     : rgb => {
   let (x, y) = coord;
-  if (x == width - 1) {
-    print_percentage(x, y, width, height);
-  } else {
-    ();
-  };
+  // if (x == width - 1) {
+  //   print_percentage(x, y, width, height);
+  // } else {
+  //   ();
+  // };
   let main_ray = generate_camera_ray(x, y, width, height, origin, upper_left);
   let aliased_rays =
     main_ray |> get_aliased_rays(~samples=samples_per_pixel, width, height);
