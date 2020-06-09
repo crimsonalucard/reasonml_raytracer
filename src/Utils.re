@@ -1,7 +1,7 @@
 let rec range = (~start: int=0, _end: int): list(int) =>
   start >= _end ? [] : [start, ...range(~start=start + 1, _end)];
 
-//tail recursive map
+//rev rev_map
 let map = (func, iterable) => iterable |> List.rev_map(func) |> List.rev;
 
 //cannot use List.map in the definition, might blow up the stack
