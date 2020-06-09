@@ -11,8 +11,6 @@ module type Hittable = {
   let get_hit_info: (t, float, ray) => maybe(hit_result);
 };
 
-//type hittable('a) = (module Hittable with type t = 'a);
-
 type sphere = {
   center: vec3,
   radius: float,
@@ -34,11 +32,6 @@ module SphereHittable: Hittable with type t = sphere = {
       -. input_sphere.radius
       *. input_sphere.radius;
     let b_squared_minus_four_ac = b *. b -. 4.0 *. a *. c;
-    //    Js.Console.log(a);
-    //    Js.Console.log(b);
-    //    Js.Console.log(c);
-    //    Js.Console.log(b_squared_minus_four_ac);
-    //    Js.Console.log("\n");
     if (b_squared_minus_four_ac < 0.0) {
       None;
     } else {
@@ -74,16 +67,6 @@ let normal_to_color = (~max_color=255, normal: vec3): rgb => {
     int_of_float(max_color_float *. z),
   );
 };
-
-//let map_vec_to_color = (~max_color: int=255, normal: vec3): rgb => {
-//  let (x, y, z): (float, float, float) = normal;
-//  let max_color_float = float_of_int(255);
-//  (
-//    int_of_float(max_color_float *. x),
-//    int_of_float(max_color_float *. y),
-//    int_of_float(max_color_float *. z),
-//  );
-//};
 
 let sphere_normal_color_from_ray =
     (input_sphere: sphere, input_ray: ray): maybe(rgb) => {
